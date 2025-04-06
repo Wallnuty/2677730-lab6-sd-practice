@@ -8,6 +8,14 @@ app.use(express.json());
 
 const cars = require('./cars.json');
 
+// ✅ Serve static files like index.html, script.js, style.css, etc.
+app.use(express.static(__dirname));
+
+// ✅ Route to serve index.html at "/"
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 //get all cars
 app.get('/cars', (req, res) => {
     res.json(cars);
@@ -47,6 +55,7 @@ app.post('/cars', (req, res) => {
 });
 
 //start app at localhost:3001
+//const port = process.env.PORT || 3001;
 app.listen(3001, () => {
     console.log('Server started at http://localhost:3001');
 });
