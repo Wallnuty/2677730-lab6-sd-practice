@@ -17,5 +17,9 @@
     "url": "https://github.com/LuckyNkosi/lab5-file/issues"
   },
   "homepage": "https://github.com/LuckyNkosi/lab5-file#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
 }

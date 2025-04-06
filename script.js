@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loadCarsBtn = document.getElementById('loadCarsBtn');
     const carList = document.getElementById('carList');
-    cars = [];
+    let cars = [];
     loadCarsBtn.addEventListener('click', () => {
         fetch('http://localhost:3001/cars')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 cars = data;
                 carList.innerHTML = '';
@@ -24,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Error fetching car data:', error);
+                carList.innerHTML = `<p class="error">Failed to load cars. Please try again later.</p>`;
             });
     });
 });
